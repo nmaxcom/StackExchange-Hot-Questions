@@ -78,8 +78,8 @@ function generateMail() {
         var user = entries[i].getChildren('author', atom)[0].getChild('name', atom).getValue();
         var userURL = entries[i].getChildren('author', atom)[0].getChild('uri', atom).getValue();
 
-        var site, siteURL;
         var regexSubSite = /https:\/\/(.*?).stackexchange\.com/.exec(url);
+        var imgsite, site, siteURL;
         if (!regexSubSite) // If it's not a "subsite"...
         {
             site = /https:\/\/(.*)\.com/.exec(url);
@@ -91,12 +91,18 @@ function generateMail() {
             site = regexSubSite[1];
             siteURL = regexSubSite[0];
         }
+        if (site == "meta")
+        {
+            imgsite = "stackexchangemeta";
+        } else {
+            imgsite = site;
+        }
 
         body += '<div style="color: rgb(68, 68, 68); width: 725px; perspective-origin: 362.5px 1199.5px; transform-origin: 362.5px 1199.5px; font-style: normal; border: 0px none rgb(68,68,68); font-variant: normal; font-weight: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(68, 68, 68) none 0px; margin-top: 5px;">' +
             '<div  style="box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px; clear: both; color: rgb(68, 68, 68); height: 47px; width: 693px; perspective-origin: 361.5px 31.5px; transform-origin: 361.5px 31.5px; font-style: normal; border-width: 0px 0px 1px; border-style: none none solid; font-variant: normal; font-weight: normal; font-size: 14px; border-color: rgb(68, 68, 68) rgb(68, 68, 68) rgb(240, 240, 240); font-family: Helvetica Neue, Helvetica, Arial, sans-serif; padding: 0px 15px 15px; line-height: 19.6000003814697px; outline: rgb(68, 68, 68) none 0px; overflow: auto;">' +
             '<a href="' + url + '"  style="color: rgb(54, 111, 179); cursor: pointer; text-decoration: none; font-variant: normal; font-style: normal; border: 0px none rgb(54,111,179); font-weight: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(54, 111, 179) none 0px;"></a>' +
             '<div  style="color: rgb(54, 111, 179); cursor: pointer; float: left; height: 37px; width: 32px; perspective-origin: 16px 18.5px; transform-origin: 16px 18.5px; font-style: normal; border: 0px none rgb(54,111,179); font-variant: normal; font-weight: normal; font-size: 14px; margin: 3px 15px 0px 0px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; outline: rgb(54, 111, 179) none 0px;">' +
-            '<span  style="color: rgb(54, 111, 179); cursor: pointer; font-weight: normal; font-style: normal; font-variant: normal; border: 0px none rgb(54,111,179); font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(54, 111, 179) none 0px;"><img src="http://cdn.sstatic.net/' + site + '/img/icon-48.png" alt="' + site + '"  style="color: rgb(54, 111, 179); cursor: pointer; height: 32px; width: 32px; perspective-origin: 16px 16px; transform-origin: 16px 16px; font-style: normal; border: 0px none rgb(54,111,179); font-variant: normal; font-weight: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(54, 111, 179) none 0px;"></span>' +
+            '<span  style="color: rgb(54, 111, 179); cursor: pointer; font-weight: normal; font-style: normal; font-variant: normal; border: 0px none rgb(54,111,179); font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(54, 111, 179) none 0px;"><img src="https://cdn.sstatic.net/Sites/' + imgsite + '/img/icon-48.png" alt="' + site + '"  style="color: rgb(54, 111, 179); cursor: pointer; height: 32px; width: 32px; perspective-origin: 16px 16px; transform-origin: 16px 16px; font-style: normal; border: 0px none rgb(54,111,179); font-variant: normal; font-weight: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(54, 111, 179) none 0px;"></span>' +
             '</div>' +
             '<div  style="color: rgb(68, 68, 68); float: left; height: 47px; width: 628px; perspective-origin: 314px 23.5px; transform-origin: 314px 23.5px; font-style: normal; border: 0px none rgb(68,68,68); font-variant: normal; font-weight: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 19.6000003814697px; font-size: 14px; outline: rgb(68, 68, 68) none 0px;">' +
             '<h2  style="color: rgb(68, 68, 68); height: 22px; width: 628px; perspective-origin: 314px 11px; transform-origin: 314px 11px; font-variant: normal; font-style: normal; border: 0px none rgb(68,68,68); font-weight: normal; font-size: 18px; margin: 0px 0px 4px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 22px; outline: rgb(68, 68, 68) none 0px;">' +
