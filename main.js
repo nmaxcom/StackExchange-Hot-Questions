@@ -32,7 +32,7 @@ var maxQuestions     = 15;                                 // 15 first (highest 
 /* ============================================ */
 /* ============================================ */
 /* ============================================ */
-var SEfeed = "http://stackexchange.com/feeds"; // from the hot goodies
+var SEfeed = "https://stackexchange.com/feeds"; // from the hot goodies
 var body = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"><html><head></head><body>';
 
 function RUN_ME() {
@@ -78,14 +78,14 @@ function generateMail() {
         var user = entries[i].getChildren('author', atom)[0].getChild('name', atom).getValue();
         var userURL = entries[i].getChildren('author', atom)[0].getChild('uri', atom).getValue();
 
-        var regexSubSite = /http:\/\/(.*?).stackexchange\.com/.exec(url);
         var site, siteURL;
+        var regexSubSite = /https:\/\/(.*?).stackexchange\.com/.exec(url);
         if (!regexSubSite) // If it's not a "subsite"...
         {
-            site = /http:\/\/(.*)\.com/.exec(url);
+            site = /https:\/\/(.*)\.com/.exec(url);
             site = site ? site[1] : "noneFound";
 
-            siteURL = site ? "http://www." + site + ".com" : "noneFound";
+            siteURL = site ? "https://www." + site + ".com" : "noneFound";
 
         } else {
             site = regexSubSite[1];
