@@ -69,7 +69,7 @@ function generateMail() {
     var totalQuestions = Math.min(entries.length, maxQuestions);
 
     for (var i = 0; i < totalQuestions; i++) {
-        var title = entries[i].getChild('title', atom).getText();
+        var title = entries[i].getChild('title', atom).getText().split('–').slice(0, 1);
         var categoryElements = entries[i].getChildren('category', atom);
 
         var updated = entries[i].getChild('updated', atom).getValue();
